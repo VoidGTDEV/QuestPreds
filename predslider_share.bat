@@ -8,12 +8,13 @@ REM --- Try to find adb.exe in PATH ---
 for %%i in (adb.exe) do if "%%~$PATH:i" neq "" set "ADB=%%~$PATH:i"
 
 REM --- Check common install locations if not found ---
-if "%ADB%"=="" if exist "%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools\adb.exe" set "ADB=%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools\adb.exe"
-if "%ADB%"=="" if exist "%USERPROFILE%\Downloads\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Downloads\platform-tools\adb.exe"
-if "%ADB%"=="" if exist "%USERPROFILE%\Documents\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Documents\platform-tools\adb.exe"
-if "%ADB%"=="" if exist "%USERPROFILE%\Desktop\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Desktop\platform-tools\adb.exe"
-if "%ADB%"=="" if exist "C:\platform-tools\adb.exe" set "ADB=C:\platform-tools\adb.exe"
-if "%ADB%"=="" if exist "D:\platform-tools\adb.exe" set "ADB=D:\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools-latest-windows\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Downloads\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Downloads\platform-tools-latest-windows\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Documents\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Documents\platform-tools-latest-windows\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Desktop\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Desktop\platform-tools-latest-windows\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "C:\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=C:\platform-tools-latest-windows\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "D:\platform-tools-latest-windows\platform-tools\adb.exe" set "ADB=D:\platform-tools-latest-windows\platform-tools\adb.exe"
+
 
 
 REM --- Ask user manually if still not found ---
