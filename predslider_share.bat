@@ -2,13 +2,33 @@
 REM ===== Pred Slider Live SwapInterval Script =====
 REM Make sure your Quest 3S is connected via Wi-Fi
 
-set "ADB=C:\Users\[User]\AppData\Local\Programs\SideQuest\resources\app.asar.unpacked\build\platform-tools\adb.exe"
+set "ADB="
+
+REM --- Try to find adb.exe in PATH ---
+for %%i in (adb.exe) do if "%%~$PATH:i" neq "" set "ADB=%%~$PATH:i"
+
+REM --- Check common install locations if not found ---
+if "%ADB%"=="" if exist "%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools\adb.exe" set "ADB=%USERPROFILE%\AppData\Local\Android\Sdk\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Downloads\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Downloads\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Documents\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Documents\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "%USERPROFILE%\Desktop\platform-tools\adb.exe" set "ADB=%USERPROFILE%\Desktop\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "C:\platform-tools\adb.exe" set "ADB=C:\platform-tools\adb.exe"
+if "%ADB%"=="" if exist "D:\platform-tools\adb.exe" set "ADB=D:\platform-tools\adb.exe"
+
+
+REM --- Ask user manually if still not found ---
+if "%ADB%"=="" (
+    echo adb.exe not found. Please enter the full path manually:
+    set /p ADB=Path to adb.exe: 
+)
+
 set "LASTVAL="
 
-REM Connect to Quest 3S (replace with your IP)
+REM --- Connect to Quest (replace [IP] with your headset's IP) ---
 "%ADB%" connect [IP]:5555
 echo Connected devices:
 "%ADB%" devices
+
 
 :loop
 REM Initialize VAL as empty
